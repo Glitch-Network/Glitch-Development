@@ -1,0 +1,73 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 10px;
+}
+
+.chat-container {
+    width: 100%; /* Adjusted for a more standard chat window size */
+    max-width: 100%; /* Ensures responsiveness */
+    height: 100%;
+    background-color: #222;
+    border: 1px solid #555;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-box {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #282828;
+    border-top: 1px solid #444; /* Adds a subtle top border */
+}
+
+.chat-input {
+    background-color: #1e1e1e;
+    display: flex;
+    padding: 10px;
+    border-top: 2px solid #444;
+}
+
+#message-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: #ccc;
+    border-radius: 4px;
+}
+
+#send-button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Brighter color for better visibility */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+#send-button:hover {
+    background-color: #66bb6a;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #424242;
+    color: #ddd; /* Ensures text is readable on dark background */
+}
+
+.message.user {
+    background-color: #536DFE; /* A more vibrant color for user messages */
+    color: white;
+}

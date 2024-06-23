@@ -1,293 +1,133 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Settings</title>
-        <script src="scripts/theme.js"></script>
-        <link rel="stylesheet" href="gbl.css"/>
-        <link rel="stylesheet" href="stars.css">
-        <link rel="icon" type="image/png" href="assets/favicon.png" />
-    
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-278K4F012J"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-278K4F012J');
-</script>
-
-</head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+    <link rel="stylesheet" href="stars.css">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-278K4F012J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-278K4F012J');
+    </script>
     <style>
         body {
-            background-color: black;
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 20px;
-        }
-
-        center {
-            bottom: 30%;
-            position: fixed;
-            width: 100%;
-    
-        }
-        button {
+            /* background-color: #202020; */
             background-color: transparent;
-            border: solid;
-            color: white;
-            top: 5%;
-            font-size: large;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: auto;
         }
-        a {
-            text-decoration: none;
-            color: white;
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-
-        /* search engine dropdown */
-
-        select {
-            background-color: transparent;
-            filter: invert(1);
+        h1 {
+            margin: 10px 0;
+        }
+        button, select {
+            padding: 10px 20px;
+            font-size: 16px;
             border: none;
-            font-size: 20px;
-            
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover, button:focus {
+            background-color: #555;
+        }
+        select {
+            width: 100%;
+            background-color: #444;
+            color: white;
+        }
+        hr {
+            border-color: #555;
+            margin: 20px 0;
+        }
+        input[type="file"] {
+            margin-top: 10px;
         }
     </style>
-    <body>
-        <div class="main"></div> <!-- Stars effect -->
+</head>
+<body>
+    <div class="container">
+        <h1>Settings</h1>
+       
+        <button onclick="localStorage.clear();">Reset all settings</button>
+        <button onclick="save()">Save your data</button>
+        <button onclick="load()">Load your data</button>
         
-        <center>
-            <div>
-               <div>Settings</div>
-               <hr color="white" width="50%">
-               <button onclick="localStorage.clear();">Reset all settings</button>
-               <button onclick="save()">Save your data ( No relogins on new link )</button>
-               <button onclick="load()">Load your data</button>
-               <hr color="white" width="50%">
-               <h4>Default search engine</h4>
-               <select id="engine">
-                  <option value="Google">Google</option>
-                  <option value="DuckDuckGo">DuckDuckGo</option>
-                  <option value="Bing">Bing</option>
-                  <option value="Yahoo">Yahoo</option>
-               </select> 
-               <hr color="white" width="50%">
-               <button style="display: none;"="enable_resolve" id="enable_resolve">Toggle Glitch's Resolver</button>
-               <hr color="white" width="50%">
-               <select id="theme">
-                  <option value="dark">Dark</option>
-                  <option value="light">Light</option>
-                  <option value="forest">Forest</option>
-                  <option value="ocean">Ocean</option>
-                  <option value="sunset">Sunset</option>
-                  <option value="rain">Rain</option>
-               </select>
-    
-
-               <hr color="white" width="50%" id="theme_div" style="display: none;">
-               <button id="ai" style="display: none;">Toggle Anti-Url Steal/Anti Teacher A.I</button>
-               <hr color="white" width="50%" id="ai_div" style="display: none;">
-               <p>Debug info:<br> <span id="debug"></span></p>
-               <h3><a href="./main.html"> Return To Main Page</a></h3>
-               <!-- File loader element -->
-               <input type="file" id="fileinput" style="display: none;">
-
-            </div>
-            </div>
-        </center>
-    </body>
-    <script>
-
-        if (localStorage.getItem("premium") != "true") {
-            window.location.href = "./main.html";
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            if (localStorage.getItem("themes") != null) {
-                document.getElementById("theme").value = localStorage.getItem("themes");
-            }
-            if (localStorage.getItem("search_engine") != null) {
-                document.getElementById("engine").value = localStorage.getItem("search_engine");    
-            }
-            setInterval(function() {
-                env = document.getElementById("engine").value
-                localStorage.setItem("search_engine", env);
-            }, 10)
-        })
-        const debug = document.getElementById("debug");
-        debug.innerHTML =+ "Host:" + location.host + "<br>" + "Protocol:" + location.protocol + "Version: " + "v5 Beta" + "<br>" + "Connecting from: " + navigator.connection.effectiveType + " internet" + "<br> Platform: " + navigator.platform;
-
-        document.addEventListener("DOMContentLoaded", function() {
-            if (localStorage.getItem("resolver_default") == "false") {
-                document.getElementById("enable_resolve").style.display = "none";
-            }
-            if (localStorage.getItem("themes") == "true" || true) {
-                document.getElementById("theme").style.display = "block";
-                document.getElementById("theme_div").style.display = "block";
-            }
-            if (localStorage.getItem("ai_teacher_detection") == "true" || true) {
-                document.getElementById("ai").style.display = "block";
-                document.getElementById("ai_div").style.display = "block";
-            }
-        })
-        const enable_resolve = document.getElementById("enable_resolve");
-
-        enable_resolve.addEventListener("click", function() {
-            if (localStorage.getItem("enable_resolve") == "false" || localStorage.getItem("enable_resolve") == null) {
-                localStorage.setItem("enable_resolve", "true");
-            }
-            else {
-                localStorage.setItem("enable_resolve", "false");
-            }
-
-        });
-
-        // Define the themes
-const themes = [
-    { id: "dark", backgroundColor: "black", color: "white", class: "stars" },
-    { id: "ocean", backgroundColor: "#005493", color: "white", class: "" },
-    { id: "light", backgroundColor: "white", color: "black", class: "" },
-    { id: "forest", backgroundColor: "#013220", color: "white", class: "forest" },
-    { id: "sunset", backgroundColor: "orange", color: "white", class: "" },
-];
-document.addEventListener("DOMContentLoaded", function() {
-    const themeSelect = document.getElementById("theme");
-    const engineSelect = document.getElementById("engine");
-    const debug = document.getElementById("debug");
-    const enableResolveButton = document.getElementById("enable_resolve");
-    const aiToggle = document.getElementById("ai");
-
-    // Update debug information
-    debug.innerHTML = "Host:" + location.host + "<br>Protocol:" + location.protocol + " Version: " + "v5 Beta" + "<br>Connecting from: " + navigator.connection.effectiveType + " internet" + "<br> Platform: " + navigator.platform;
-
-    // Load initial theme
-    updateTheme();
-
-    // Load initial search engine
-    if (localStorage.getItem("search_engine")) {
-        engineSelect.value = localStorage.getItem("search_engine");
-    }
-
-    // Set search engine on change
-    engineSelect.addEventListener("change", function() {
-        localStorage.setItem("search_engine", this.value);
-    });
-
-    // Theme change handling
-    themeSelect.addEventListener("change", function() {
-        localStorage.setItem("theme", this.value);
-        updateTheme();
-    });
-
-    function updateTheme() {
-        const currentTheme = themes.find(t => t.id === localStorage.getItem("theme")) || themes[0];
-        document.body.style.backgroundColor = currentTheme.backgroundColor;
-        document.body.style.color = currentTheme.color;
-        const mainDiv = document.querySelector(".main");
-        if (mainDiv) {
-            mainDiv.className = "main " + currentTheme.class;
-        }
-        // Set the select element to show the current theme
-        themeSelect.value = currentTheme.id;
-    }
-
-    // Conditional display of elements based on local storage
-    enableResolveButton.style.display = localStorage.getItem("resolver_default") === "false" ? "none" : "block";
-    aiToggle.style.display = localStorage.getItem("ai_teacher_detection") ? "block" : "none";
-
-    enableResolveButton.addEventListener("click", function() {
-        let currentState = localStorage.getItem("enable_resolve") === "true";
-        localStorage.setItem("enable_resolve", !currentState);
-    });
-});
+        <h4>Search engine</h4>
+        <select id="engine">
+            <option value="Google">Google (default)</option>
+            <option value="DuckDuckGo">DuckDuckGo</option>
+            <option value="Bing">Bing</option>
+            <option value="Yahoo">Yahoo</option>
+        </select>
+        <h4>Themes</h4>
+        <select id="theme">
+            <option value="void">Dark (default)</option>
+            <option value="dark">Space</option>
+            <option value="light">Light</option>
+            <option value="forest">Forest</option>
+            <option value="forest2">Forest 2</option>
+            <option value="ocean">Ocean</option>
+            <option value="sunset">Sunset</option>
+            <option value="rain">Rain</option>
+            <option value="wheat">Wheat Field</option>
+            <option value="capy">Capybara</option>
+            <option value="custom-image">Custom Image</option>
+        </select>
+        <input type="file" id="fileinput" style="display: none;">
+        <button style="display: none;" id="filebtn">Load Image</button>
+        <hr id="theme_div" style="display: none;">
+        <center><button id="ai" style="display: none;">Toggle Anti-Url Steal/Anti Teacher A.I</button></center>
+        <hr id="ai_div" style="display: none;">
+        <button id="ads">Toggle ADs</button>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                if (localStorage.getItem("hide_ad") == "1") {
+                    document.getElementById("ads").innerHTML = "Show ADs"
+                }
+                else{
+                    document.getElementById("ads").innerHTML = "Hide ADs"
+                }
+                document.getElementById("ads").addEventListener("click",function(){
+                    if (localStorage.getItem("hide_ad") == "1") {
+                        localStorage.setItem("hide_ad", "0")
+                    } else {
+                        localStorage.setItem("hide_ad", "1")
+                    }
+                    if (localStorage.getItem("hide_ad") == "1") {
+                        document.getElementById("ads").innerHTML = "Show ADs"
+                    }
+                    else{
+                        document.getElementById("ads").innerHTML = "Hide ADs"
+                    }
+                })
+            })
 
 
-// Initial theme setup
-document.addEventListener("DOMContentLoaded", function() {
-    const savedThemeId = localStorage.getItem("theme");
-    const savedTheme = themes.find(t => t.id === savedThemeId) || themes[0];
-    document.body.style.backgroundColor = savedTheme.backgroundColor;
-    document.body.style.color = savedTheme.color;
-    const mainDiv = document.getElementsByClassName("main")[0];
-    if (mainDiv) {
-        mainDiv.className = "main " + savedTheme.class;
-    }
-});
+        </script>
+        <p>Debug info:<br> <span id="debug"></span></p>
+    </div>
 
-
-
-function save() {
-    let data = "";
-
-    for (const [key, value] of Object.entries(localStorage)) {
-        if (key.includes("data")) {
-            data += key + "=" + value + "\n";
-        }
-    }
-
-    var blob = new Blob([btoa(data)], { type: "text/plain;charset=utf-8" });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    a.href = url;
-    a.download = "data.glitch";
-    document.body.appendChild(a); // Append the anchor to body
-    a.click(); // Simulate click on the anchor
-    document.body.removeChild(a); // Remove the anchor from body
-    URL.revokeObjectURL(url); // Clean up the URL object
-}
-
-function load() {
-    const input = document.getElementById("fileinput");
-    if (input) {
-        input.removeEventListener("change", handleFileSelect); // Safe to call if input exists
-        input.addEventListener("change", handleFileSelect);
-        input.click();
-    } else {
-        console.error("File input element not found!");
-    }
-}
-
-
-function handleFileSelect(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-        let contents = e.target.result;
-
-        // Decode Base64
-        contents = atob(contents);
-
-        // Split into lines
-        const lines = contents.split("\n");
-
-        for (const line of lines) {
-            if (line.trim().length > 0) {
-                const [key, value] = line.split("=");
-                localStorage.setItem(key, value);
-            }
-        }
-    };
-
-    reader.readAsText(file);
-}
-
-
-function setTheme() {
-    const color = document.getElementById("color").value;
-    localStorage.setItem("theme", "custom-color");
-    localStorage.setItem("custom-color", color);
-    updateTheme();
-}
-
-
-
-
-
-
-
-    </script>
+    <script src="scripts/settings.js"></script>
+</body>
 </html>
-

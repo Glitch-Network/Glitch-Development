@@ -1,8 +1,7 @@
 services:
 - type: web
-  name: v4
+  name: v6
   runtime: node
-  repo: https://github.com/Glitch-Network/v4
   branch: main
   plan: free
   region: oregon

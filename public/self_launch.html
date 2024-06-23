@@ -26,6 +26,7 @@ body {
     height: 25%; /* Specify height as a percentage of the viewport height */
     padding: 15px;
     box-sizing: border-box; /* Ensures padding doesn't affect the total width */
+    border-bottom: solid 3px white;
 }
 
 #searchbar input {
@@ -101,8 +102,6 @@ body {
 
     // Function to parse URL parameters
 // Utility function to extract URL parameters
-// Utility function to extract URL parameters
-// Utility function to extract URL parameters
 function getURLParameter(name) {
   var regex = new RegExp('[\\?&]' + name.replace(/[\[\]]/g, '\\$&') + '=([^&#]*)');
   var results = regex.exec(window.location.search);
@@ -112,17 +111,13 @@ function getURLParameter(name) {
 document.addEventListener('DOMContentLoaded', function() {
   const urlParameter = getURLParameter("url");
 
-  // Set URL from local storage or URL parameter
-  if (urlParameter) {
-    localStorage.setItem("url", urlParameter);
-    window.location.href = "./launch.html" 
-  } else {
-    const storedUrl = localStorage.getItem("url");
-    if (storedUrl) {
-      document.getElementById("frame").src = `./llaunch.html?url=${storedUrl}`;
-      document.getElementById("search").value = storedUrl;
-    }
-  }
+
+      document.getElementById("frame").src = `./main.html`;
+      document.getElementById("search").value = "";
+
+  })
+
+
 // Search button click handler
 document.getElementById("srch").addEventListener("click", function() {
   let searchValue = document.getElementById("search").value.trim();
@@ -153,7 +148,6 @@ document.getElementById("srch").addEventListener("click", function() {
       document.getElementById("srch").click();
     }
   });
-});
 
 
 

@@ -1,96 +1,80 @@
 document.addEventListener("DOMContentLoaded", function() {
-    
-theme = localStorage.getItem("theme");
+    function load_theme() {
+        const theme = localStorage.getItem("theme");
+        const theme_background = document.createElement('img');
+        theme_background.style = `
+        z-index: -15;
+            position: fixed;
+            height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+        `;
+        document.body.appendChild(theme_background);
 
-theme_background = document.createElement('img')
-theme_background.style.zIndex = -1
-theme_background.style.position = 'fixed'
-theme_background.style.height = '100%'
-theme_background.style.top = "0px"
-theme_background.style.left = "0px"
-theme_background.style.width = '100%'
+        const themeSettings = {
+            "void": { backgroundColor: "#131313", color: "white", src: "" },
+            "dark": { backgroundColor: "#131313", color: "white", src: "assets/backgrounds/earth.gif" },
+            "ocean": { backgroundColor: "black", color: "white", src: "assets/backgrounds/ocean.jpg" },
+            "light": { backgroundColor: "white", color: "black", src: "" },
+            "forest": { backgroundColor: "#013220", color: "white", src: "assets/backgrounds/forest.webp" },
+            "forest2": { backgroundColor: "#013220", color: "white", src: "assets/backgrounds/forest2.png" },
+            "sunset": { backgroundColor: "orange", color: "white", src: "assets/backgrounds/sunset.png" },
+            "custom-image": { backgroundColor: localStorage.getItem("custom-image"), color: "white", src: localStorage.getItem("custom-image"), objectFit: "cover" },
+            "rain": { backgroundColor: "black", color: "white", src: "assets/backgrounds/rain.gif" },
+            "wheat": { backgroundColor: "black", color: "white", src: "assets/backgrounds/wheat.jpg" },
+            "capy": { backgroundColor: "black", color: "white", src: "assets/backgrounds/capybara.jpg" },
+            "s1": { backgroundColor: "black", color: "white", src: "assets/backgrounds/autism.jpg" },
+            "s2": { backgroundColor: "black", color: "white", src: "assets/backgrounds/sirbia.png" },
+            "s3": { backgroundColor: "black", color: "white", src: "assets/backgrounds/yoisthatkanye.png" }
+        };
 
-
-if (theme =="dark") {
-    document.body.style.backgroundColor = "black";
-    document.body.style.color = "white";
-}
-
-if (theme == "ocean") {
-    document.body.style.backgroundColor = "black";
-    document.body.style.color = "white";
-    theme_background.src = "assets/backgrounds/ocean.jpg"
-    // append to body
-    document.body.appendChild(theme_background);
-}
-
-if (theme == "light") {
-    document.body.style.backgroundColor = "white";
-    document.body.style.color = "black";
-}
-
-if (theme == "forest") {
-    document.body.style.backgroundColor = "#013220";
-    document.body.style.color = "white";
-    theme_background.src = "assets/backgrounds/forest.webp"
-    // append to body
-    document.body.appendChild(theme_background);
-
-}
-if (theme == "sunset") {
-    document.body.style.backgroundColor = "orange";
-    theme_background.src = "assets/backgrounds/sunset.png"
-    document.body.style.color = "white";
-    // append to body
-    document.body.appendChild(theme_background);
-}
-
-if (theme == "custom-color") {
-    document.body.style.backgroundColor = localStorage.getItem("custom-color");
-    theme_background.src = "assets/bg.png"
-    theme_background.style.objectFit = "cover";
-    document.body.appendChild(theme_background);
-
-}
-
-if (theme == "rain") {
-    document.body.style.backgroundColor = "black";
-    document.body.style.color = "white";
-    theme_background.src = "assets/backgrounds/rain.gif"
-    // append to body
-    document.body.appendChild(theme_background);
-}
-
-if (theme != "dark"){
-    try{
-        // remove stars.css
-        css = this.getElementsByTagName('link')
-        for (i = 0; i < css.length; i++) {
-            if (css[i].getAttribute('href') == 'stars.css') {
-                css[i].parentNode.removeChild(css[i])
+        if (theme in themeSettings) {
+            document.body.style.backgroundColor = themeSettings[theme].backgroundColor;
+            document.body.style.color = themeSettings[theme].color;
+            if (themeSettings[theme].src) {
+                theme_background.src = themeSettings[theme].src;
+                theme_background.style.objectFit = themeSettings[theme].objectFit || "";
+            } else {
+                theme_background.remove();
             }
         }
-        if (document.getElementById("main")){
-            document.getElementById("main").remove() // remove stars
+
+        if (theme !== "dark") {
+            removeStars();
+        } else {
+            addStars();
         }
-        
-        else {
-            x = setInterval(function() {
-                if (document.getElementById("main")){
-                    document.getElementById("main").remove() // remove stars
-                    clearInterval(x)
-                }
-            }, 10)
-        }
-    }catch{}
-}
-else{
-    if (!document.getElementById("main")){
-        main = document.createElement('div')
-        main.id = "main"
-        document.body.appendChild(main)
     }
-}
 
+    function removeStars() {
+        const cssLinks = document.getElementsByTagName('link');
+        Array.from(cssLinks).forEach(link => {
+            if (link.getAttribute('href') === 'stars.css') {
+                link.parentNode.removeChild(link);
+            }
+        });
 
-})
+        const mainDiv = document.getElementById("main");
+        if (mainDiv) mainDiv.remove();
+    }
+
+    function addStars() {
+        if (!document.getElementById("main")) {
+            const main = document.createElement('div');
+            main.id = "main";
+            document.body.appendChild(main);
+        }
+    }
+
+    let old_theme = localStorage.getItem("theme");
+    setInterval(() => {
+        const currentTheme = localStorage.getItem("theme");
+        if (currentTheme !== old_theme) {
+            load_theme();
+            old_theme = currentTheme;
+        }
+    }, 100);
+
+    load_theme();
+});

@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script>
+            if (localStorage.getItem("in_bounds") == 0 && localStorage.getItem("new_instance") == 0) {
+                window.location.href = "./m1";
+            }
+        </script>
         <meta charset="utf-8" />
         <title>Glitch</title>
         <script src="scripts/cursor.js"></script>
         <link rel="stylesheet" href="gbl.css"/>
         <link rel="icon" type="image/png" href="assets/favicon.png" />
-        <link rel="stylesheet" href="stars.css" />
+        <script src="ai.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.14.0-beta.2/jquery-ui.js" integrity="sha256-jP1AFhfuTBpw8WvRteYETbagFOoXaDO5DJIuc5JvzG4=" crossorigin="anonymous"></script>
+
         <style>
             body {
-                background-color: black;
+                background-color: transparent;
                 color: white;
                 overflow: hidden;
                 font-family: Arial, Helvetica, sans-serif;
@@ -74,6 +82,10 @@
   gtag('config', 'G-278K4F012J');
 </script>
 
+
+
+   
+
 </head>
     <body>
         <div id="container">
@@ -82,13 +94,19 @@
         <div class="main"></div> <!-- Stars effect -->
         <div class="content">
             <input class="input" placeholder="https://google.com" id="input">
-            <button class="button" onclick="window.location.href = './main.html'">Go back to home</button>
+            <button id="fallback" class="button" onclick="window.location.href = './main.html'">Go back to home</button>
             
         </div>
 
         <script>
 
+
+
             document.addEventListener("DOMContentLoaded", function() {
+
+                document.getElementById("fallback").addEventListener("click",function(){
+                    window.location.href = './main.html'
+                })
                 search_engine_prefrence = localStorage.getItem("search_engine");
                         if (search_engine_prefrence == null) {
                             search_engine = "https://www.google.com/search?q=";

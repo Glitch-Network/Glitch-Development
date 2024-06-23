@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Glitch</title>
-<script src="scripts/theme.js"></script>
+
 <script src="ai.js"></script> <!-- Enable AI -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -12,21 +12,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&amp;display=swap" rel="stylesheet"/>
 <link href="gbl.css" rel="stylesheet"/>
 <script src="load_apps.js"></script>
+
+<script src="extras/load_apps2.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.14.0-beta.2/jquery-ui.js" integrity="sha256-jP1AFhfuTBpw8WvRteYETbagFOoXaDO5DJIuc5JvzG4=" crossorigin="anonymous"></script>
+
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link href="stars.css" rel="stylesheet"/>
 <style>
          body {
-         background-color: black;
+         background-color: transparent;
          color: white;
          overflow-y: auto;
          font-family: Arial, Helvetica, sans-serif;
          }
-         .glow {
-         color: #fff;
-         text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
-         font-size: 50px;
-         
-         }
+
          #search {
          width: 300px;
          height: 30px;
@@ -158,22 +158,69 @@
          );
          }
       </script>
+      
+      <style>
+        .chatbot-button {
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+                 position: fixed;
+                 right: 15px;
+                 background-color: white;
+                 border-radius: 50%; /* Changed to 50% for a perfect circle */
+                 cursor: pointer;
+               }
+             
+               .chatbot-frame  {
+                 display: none; /* Initially hidden */
+                 width: 580px;
+                 height: 540px;
+                 position: fixed;
+                 right: 15px;
+                 bottom: 85px;
+                 padding: 10px;
+               }
+               .chatbot-frame iframe {
+                 width: 580px;
+                 height: 540px;
+                 position: fixed;
+                 right: 15px;
+                 bottom: 85px;
+                 padding: 10px;
+               }
+             
+               .chatbot-button {
+                 width: 40px;
+                 height: 40px;
+                 bottom: 55px;
+                 padding: 10px;
+               }
+                 </style>
+                 
+
+                 
+         </script>
+       
 <body>
 <div class="main"></div>
 <center>
 <div id="header" style="position: fixed;">
-<div class="glow" id="title">Apps</div>
-<div class="glow" onclick="window.location.href = './main.html'" style="font-size: 30px; top: 10px; left: 10px;">Back</div>
+
+<div class="glow" id="fallback" onclick="window.location.href = './main.html'" style="font-size: 30px; top: 10px; left: 10px;">Back</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+
+document.getElementById("fallback").addEventListener("click",function(){
+    window.location.href = './main.html'
+})
+
+  });
+</script>
 </div>
 <br/>
 <br/>
 <br>
-<br>
-<br>
 
-<br>
-<br>
-<br>
 
 <br>
 <br>
@@ -185,7 +232,7 @@
 </div>
 </center>
 <hr style="width: 25%;"/>
-<div id="apps" style="margin-top: 12%">
+<div id="apps" style="margin-top: 9%">
 
   <script>
     function custom(){
@@ -753,7 +800,15 @@
 <div class="apps" id="apps"></div>
 </center>
 <script src="load_apps.js"></script>
-</body>
+
+
+
+<center>
+  <br>
+  <h3 style="color: black">Uhh, so you reached the end.</h3>
+  <button style="width: 50%; border-radius: 20px; background-color: #161616;padding: 15px; color: white" onclick="document.body.scrollTop = document.documentElement.scrollTop = 0;">Go back?</button>
+  </center>
+</body>  
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-278K4F012J"></script>

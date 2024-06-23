@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Glitch</title>
+
+    <script src="scripts/cursor.js"></script>
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <script src="scripts/autohost.js"></script>
+    <script src="ai.js"></script> <!-- Enable AI -->
+    <link rel="stylesheet" href="stars.css" />
+    <style>
+        body {
+            background-color: transparent;
+            color: white;
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+            .desc {
+                user-select: none;
+            }
+    
+
+
+            .glow {
+                animation: rainbow 8s infinite;
+
+                color: #fff;
+                text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+                font-size: 100px;
+            }
+            .button {
+                background-color: transparent;
+                border: solid;
+                color: white;
+                top: 5%;
+                position: fixed;
+                font-size: large;
+            }
+            .desc img {
+                width: 200px;
+                cursor: pointer;
+            }
+
+            .desc:hover {
+                animation: grow 0.2s ease-in;
+                animation-fill-mode: forwards;
+            }
+            @keyframes grow {
+                0% {
+        transform: scale(0.9);
+        opacity: 0.6; /* Starting state of the glow */
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 1; /* Ending state of the glow */
+    
+    }
+}
+
+
+
+        </style>
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-278K4F012J"></script>
+<script>
+    // if not in iframe
+
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-278K4F012J');
+</script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.14.0-beta.2/jquery-ui.js" integrity="sha256-jP1AFhfuTBpw8WvRteYETbagFOoXaDO5DJIuc5JvzG4=" crossorigin="anonymous"></script>
+</head>
+    <body>
+
+        <!-- Stars effect --- Credits: https://codepen.io/wheresdara/pen/wvXBpwa -->
+        <div class="main"></div>
+        <!-- End Stars effect -->
+
+
+        <center style="user-select: none;">
+            <h1 style="font-size: 90px;">
+                <img src="assets/images/logo.png" style="width: 350px; margin-top: 20px;">
+            <script>
+
+                localStorage.setItem("in_bounds",1) // DO NOT REMOVE THIS LINE, ITS ESSENTIAL FOR THE ARROW SYSTEM
+
+                function load() {
+                    x = window.location.href
+                    code = `
+                    <body style="background-color: black">
+                    <iframe src="${x}" frameborder="0" style="border: none; background-color: black" width="100%" height="100%"></iframe>
+                    </body>
+                    `
+                    x = window.open("about:blank", "_blank").document.write(code)
+                    x.document.body.style.backgroundColor = "black"
+
+                }
+                str = ""
+                document.addEventListener("keypress",function(e) {
+                    str += e.key
+                    if (str == "welcome to glitch") {
+                       document.body.innerHTML='<iframe style="height: 100vh; width: 100vw" id="ytplayer" type="text/html" width="720" height="405" src="./launch.html?url=https://www.youtube.com/embed/tubpfE8bl8Q?autoplay=1&controls=0" frameborder="0" allowfullscreen>'
+                       document.getElementById("ytplayer").addEventListener("load",function() {
+                           
+                       
+                        setTimeout(function() {
+                           window.location.reload() // end of easter egg
+                       },7000)
+
+                    })
+                    }
+                })
+
+                if (localStorage.getItem("change_discord_inv_url")){
+                    document.getElementById("discord").onclick = function() {
+                        window.open(localStorage.getItem("change_discord_inv_url"))
+                    }
+                }
+
+                document.addEventListener("DOMContentLoaded", function() {
+
+
+            })
+
+
+
+            </script>
+        </center>  
+        <br>
+        <center>
+        <div style="display: flex; justify-content: center">
+        <div onclick="load()" class="cloak" style="font-size: 25px; color: white; cursor: pointer; background-color: #131313; border-radius: 15px; width: 155px; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px" >
+            Click to Cloak!
+        </div>
+        <div onclick="/*open a new window*/ window.open('https://discord.gg/WRjuWzyASk'); window.open('./launch.html?url=https://discord.gg/WRjuWzyASk')" class="cloak" style="font-size: 25px; margin-left: 20px; color: white; cursor: pointer; background-color: #5d4ee4; border-radius: 15px; width: 155px;  align-items: center; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px" >
+            Join our Discord!
+        </div>
+    </div>
+        </center>
+        <div class="content" style="">
+            <center style="display: flex; justify-content: center;">
+                <div class="desc" onclick="window.location.href='./apps.html'">
+                    <img src="./assets/images/apps.png">
+                </div>
+                <div class="desc" onclick="window.location.href='./proxy.html'">
+                     <img  src="./assets/images/proxy.png">
+                </div>
+                <div class="desc" onclick="window.location.href='./tabs.html'">
+                    <img  style="width: 130px; margin-top: 40px;" src="./assets/images/tabs.png">
+               </div>
+               
+               <br>
+               <img id="rr" style="position: fixed; opacity: .9; border-radius: 5px; border: #131313 2px solid; width: 350px; height: 150px; margin-top: 230px" onclick="window.open('https://discord.gg/2n3NHNBzda')" src="assets/ads/youradhere.png">
+           
+                </center>
+        </div>
+
+        <script>
+
+            if (localStorage.getItem("hide_ad") == "1") {
+                document.getElementById("rr").style.display = "none"
+            }
+            ads = ["galaxy.png","outpost.png","youradhere.png", "youcanturnoffads.png"]
+            ads_urls = ["https://discord.gg/8wEk32uKQk","https://discord.gg/4AeuJJHNj9","https://discord.gg/2n3NHNBzda","https://ublock.org"]
+            current_ad = 0
+
+            
+
+
+            setInterval(function(){
+                document.getElementById("rr").src = "./assets/ads/" + ads[current_ad]
+                if (current_ad == ads.length - 1) current_ad = 0
+                else{current_ad = (current_ad + 1) % ads.length}
+
+
+                document.getElementById("rr").onclick = function() {
+                    window.open(ads_urls[current_ad])
+                }   
+
+            }, 10000) // every 10 seconds
+        </script>
+        
+ 
+
+  
+
+    </body>
+</html> 

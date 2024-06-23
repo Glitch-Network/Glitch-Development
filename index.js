@@ -18,6 +18,8 @@ app.use("/uv/", express.static(uvPath));
 app.use("/epoxy/", express.static(epoxyPath));
 app.use("/baremux/", express.static(baremuxPath));
 
+
+
 // Error for everything else
 app.use((req, res) => {
   res.status(404);
@@ -61,4 +63,4 @@ function shutdown() {
   process.exit(0);
 }
 
-server.listen(port); 
+server.listen(port);
