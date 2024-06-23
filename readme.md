@@ -1,4 +1,4 @@
-![image](https://github.com/infdevv/Glitch/blob/main/logo.png?raw=true)
+![image](https://raw.githubusercontent.com/Glitch-Network/v6/main/public/assets/images/logo.png)
 
 A free and swift unblocker. 
 
