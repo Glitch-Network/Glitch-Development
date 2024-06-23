@@ -1,4 +1,4 @@
-![image](https://raw.githubusercontent.com/Glitch-Network/v6/main/public/assets/images/logo.png)
+<center><img src="https://raw.githubusercontent.com/Glitch-Network/v6/main/public/assets/images/logo.png" style="width:350px">
 
 A free and swift unblocker. 
 
@@ -28,4 +28,3 @@ If you have problems or suggestions for/with the site or deploying then check ou
 
 > Enjoy!
 
- 
