@@ -190,7 +190,7 @@
     function miniplaye(url) {
         let embedUrl = url;
         if (url.includes('youtube')) {
-            embedUrl = `https://www.youtube.com/embed/${url.split("v=")[1].split('&')[0]}?controls=1&showinfo=0&autoplay=1&start=${parseInt(localStorage.getItem("time_miniplayer") || "0")}`;
+            embedUrl = `./launch.html?url=https://www.youtube.com/embed/${url.split("v=")[1].split('&')[0]}?controls=1&showinfo=0&autoplay=1&start=${parseInt(localStorage.getItem("time_miniplayer") || "0")}`;
         }
 
         timeInterval=0
@@ -202,7 +202,7 @@
 
     function miniplayer(){
             alert("--Miniplayer--")
-            let videoUrl = prompt("Enter the URL of the video", "https://www.youtube.com/watch?v=whatever");
+            let videoUrl = prompt("Enter the URL of the video ( can be blocked )", "https://www.youtube.com/watch?v=whatever");
             if (videoUrl) {
                 miniplaye(videoUrl);
             }

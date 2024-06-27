@@ -96,7 +96,22 @@
     // Wait, we dont need to do this. I already fixed it from the source 
     // window.location.href = window.location.href + '&refresh=1'; // Fix that damn url getting the ?refresh instead of the launch bug
    }
-  });
+
+   
+});
+
+if (getURLParameter("url") != "") {
+  if (!localStorage.getItem("history")) {
+        localStorage.setItem("history", "");
+    }
+
+    // Add to history if the last entry isn't the same as the current input
+    var historyArray = localStorage.getItem("history").split(",");
+    var currentInput = getURLParameter("url");
+    if (historyArray[historyArray.length - 1] !== currentInput) {
+        localStorage.setItem("history", localStorage.getItem("history") + "," +(historyArray.length > 1 ? "," : "") + currentInput);
+    }
+  }
 
  x = setInterval(function(){
     if (document.getElementById("uv-frame").contentDocument.body.innerHTML != "") {
@@ -104,6 +119,7 @@
       document.getElementById("loading-div").remove()
     }
   })
+
 
   </script>
 </html>

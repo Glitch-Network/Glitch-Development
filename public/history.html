@@ -3,14 +3,58 @@
     <head>
         <title>Glitch</title>
         <style>
-            body {
                 body {
                     background-color: #131313;
-                }
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .item {
+                padding: 10px;
+                width: 50%;
+                border-radius: 5px;
+                background-color: #424242;
+                color: #ddd; /* Ensures text is readable on dark background */
+            }
+
+            .remove {
+                float: right;
+                cursor: pointer;
+                color: #c06868;
             }
         </style>
     </head>
     <body>
-        <
+        <center>
+            <h2 style="position: fixed; top: 1px; left: 15px; cursor: pointer" onclick="window.location.href = './main.html'">Back</h2>
+            <h2 style="position: fixed; top: 1px; right: 15px; cursor: pointer" onclick="alert('Hmm, i wonder why you want to clear your history?'); alert('Well, i guess we\'ll do it for you'); localStorage.removeItem('history');">Clear History</h2>
+            <h1>History</h1>
+            <div class="main"></div>
+
+        </center>
+        <script>
+// Function to refresh the history display
+function refreshHistoryDisplay() {
+    const historyItems = localStorage.getItem("history").split(",");
+    let innerHTML = "";
+    for (let i = 0; i < historyItems.length; i++) {
+        innerHTML += "<div class='item'>" + historyItems[i] + " <div class='remove' onclick='removeItem(" + i + ")'>X</div></div><br>";
+    }
+    document.getElementsByClassName("main")[0].innerHTML = innerHTML;
+}
+
+// Function to remove an item from history
+function removeItem(itemIndex) {
+    let history = localStorage.getItem("history").split(",");
+    history.splice(itemIndex, 1);
+    localStorage.setItem("history", history.join(","));
+    refreshHistoryDisplay();
+}
+
+// Initial display
+refreshHistoryDisplay();
+
+
+        </script>
     </body>
 </html>
